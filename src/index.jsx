@@ -1,12 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import InputWithPrompts from './components/'
+import './styles.less'
 
-import "./styles";
+const App = () => <InputWithPrompts />
 
-class HelloWorld extends React.Component {
-    render () {
-        return <span>Hello world!</span>
-    }
-}
-
-ReactDOM.render(<HelloWorld />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'))

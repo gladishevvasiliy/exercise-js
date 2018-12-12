@@ -1,0 +1,4 @@
+const CHANGE_FORM = 'CHANGE_FORM'
+const GET_DATA = 'GET_DATA'
+
+export { CHANGE_FORM, GET_DATA }

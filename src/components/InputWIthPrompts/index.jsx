@@ -1,22 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Input, List } from '../../containers'
-/* eslint-disable */
-export default class InputWithPrompts extends Component {
-  /* eslint-enable */
 
-  render() {
-    // TODO if spaces delete
-    const { options, onChange } = this.props
-    return (
-      <React.Fragment>
-        <Input onChange={onChange} />
-        <List list={options} />
-      </React.Fragment>
-    )
-  }
-}
+const InputWithPrompts = props => (
+  <React.Fragment>
+    <Input onChange={props.onChange} />
+    <List list={props.options} />
+  </React.Fragment>
+)
 
+export default InputWithPrompts
 InputWithPrompts.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func,

@@ -7,6 +7,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    // помещает в store.list передаваемые ему значения (в нашем случае, список стран от API)
     case SET_DATA: {
       if (isNil(action.payload)) return state
       return {
@@ -15,6 +16,7 @@ export default (state = initialState, action) => {
       }
     }
 
+    // очищает store.list
     case REMOVE_DATA: {
       return {
         ...state,

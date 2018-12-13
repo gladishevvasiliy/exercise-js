@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import InputWithPrompts from './components/'
+import Main from './pages/Main'
 import rootReducer from './reducers'
 import './styles.less'
 
@@ -15,7 +15,7 @@ const store = createStore(
 
 const App = () => (
   <Provider store={store}>
-    <InputWithPrompts />
+    <Main />
   </Provider>
 )
 

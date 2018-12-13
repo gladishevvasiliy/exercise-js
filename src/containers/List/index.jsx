@@ -3,13 +3,17 @@ import PropTypes from 'prop-types'
 
 const List = props => (
   <React.Fragment>
-    <h1>List</h1>
-    <div>{props.list}</div>
+    <div>
+      {props.list.length === 0 ? 'Подходящих не найдено' : null}
+      {props.list.map(item => (
+        <li key={item.numericCode}>{item.name}</li>
+      ))}
+    </div>
   </React.Fragment>
 )
 
 export default List
 
 List.propTypes = {
-  list: PropTypes.string,
+  list: PropTypes.array,
 }

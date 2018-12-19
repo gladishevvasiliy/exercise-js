@@ -15,17 +15,24 @@ import { API } from '../res/constants' // url api (его статическая
 полученных из API), и removeData (удаление из стора элементов)
 */
 class Main extends Component {
-  // метод, который обрабатывает изменения в input
-  onChange = (value) => {
+  constructor(props) {
+    super(props)
+    this.state = {
+      formValue: '',
+    }
+  }
+
+  componentDidUpdate() {
     const { actions } = this.props
+    const { formValue } = this.state
 
     // если введены пробелы, то store очищается (нехорошо, т. к при каждом нажатии пробела экшен)
-    if (!trim(value)) {
+    if (!trim(formValue)) {
       actions.removeData()
       return
     }
     // формируем ссылки из статичной части, и изменяемой {name}
-    const urlForFetch = `${API}${value}`
+    const urlForFetch = `${API}${formValue}`
     // выполняем функцию, которая делает fetch к API (вынес в отдельный файл в папке utils)
     fetchData(urlForFetch).then((data) => {
       // к сожалению, лучшего способа пока не нашел. Если вернулись undefined, то тогда removeData
@@ -36,6 +43,11 @@ class Main extends Component {
 
       actions.setData(data)
     })
+  }
+
+  // метод, который обрабатывает изменения в input
+  onChange = (value) => {
+    this.setState({ formValue: value })
   }
   render() {
     const { list } = this.props

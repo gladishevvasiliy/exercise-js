@@ -11,5 +11,5 @@ const Input = props => (
 export default Input
 
 Input.propTypes = {
-  onChange: PropTypes.function,
+  onChange: PropTypes.func,
 }

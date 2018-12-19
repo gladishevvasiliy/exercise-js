@@ -10,6 +10,7 @@ const InputWithPrompts = props => (
 )
 
 export default InputWithPrompts
+
 InputWithPrompts.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func,

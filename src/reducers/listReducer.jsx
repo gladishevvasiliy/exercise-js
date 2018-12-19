@@ -1,5 +1,5 @@
 import { isNil } from 'lodash'
-import { SET_DATA, REMOVE_DATA } from '../res/constants'
+import { SET_DATA } from '../res/constants'
 
 const initialState = {
   list: [],
@@ -13,14 +13,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         list: action.payload,
-      }
-    }
-
-    // очищает store.list
-    case REMOVE_DATA: {
-      return {
-        ...state,
-        list: [],
       }
     }
 

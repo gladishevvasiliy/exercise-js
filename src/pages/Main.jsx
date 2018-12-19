@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { trim, isNil } from 'lodash'
 
 import InputWithPrompts from '../components'
-import { setData, removeData } from '../actions'
+import { setData } from '../actions'
 import fetchData from '../utils/fetch' // функция, которая делает fetch к API
 import { API } from '../res/constants' // url api (его статическая часть, без {name})
 
@@ -22,13 +22,14 @@ class Main extends Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.formValue === this.state.formValue) return
     const { actions } = this.props
     const { formValue } = this.state
 
     // если введены пробелы, то store очищается (нехорошо, т. к при каждом нажатии пробела экшен)
     if (!trim(formValue)) {
-      actions.removeData()
+      actions.setData([])
       return
     }
     // формируем ссылки из статичной части, и изменяемой {name}
@@ -37,10 +38,9 @@ class Main extends Component {
     fetchData(urlForFetch).then((data) => {
       // к сожалению, лучшего способа пока не нашел. Если вернулись undefined, то тогда removeData
       if (isNil(data)) {
-        actions.removeData()
+        actions.setData([])
         return
       }
-
       actions.setData(data)
     })
   }
@@ -61,7 +61,7 @@ class Main extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ setData, removeData }, dispatch),
+  actions: bindActionCreators({ setData }, dispatch),
 })
 
 const mapStateToProps = state => ({

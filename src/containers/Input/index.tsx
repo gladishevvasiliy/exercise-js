@@ -1,10 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Input = props => (
+interface InputProps {
+  onChange: Function
+}
+
+const Input = ({ onChange }: InputProps) => (
   <React.Fragment>
     <h1>Input</h1>
-    <input onChange={e => props.onChange(e.target.value)} />
+    <input onChange={e => onChange(e.target.value)} />
   </React.Fragment>
 )
 

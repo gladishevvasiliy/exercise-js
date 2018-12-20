@@ -1,7 +1,12 @@
-import React from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
+import { Item } from '../../res/Models'
 
-const List = props => (
+type Props = {
+  list: Array<any>
+}
+
+const List = (props: Props) => (
   <div>
     {props.list.length === 0 ? 'Подходящих не найдено' : null}
     {props.list.map(item => (

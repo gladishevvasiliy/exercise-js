@@ -1,13 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const path = require('path')
 
-var htmlPlugin = new HtmlWebpackPlugin({
+const htmlPlugin = new HtmlWebpackPlugin({
   template: './src/index.html',
   filename: './index.html',
 })
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/index.tsx',
   /**
    * Секцию output в данном случае можно было бы опустить,
    * т.к. по умолчанию заданы именно такие настройки.
@@ -18,6 +17,15 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -34,7 +42,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css', '.less'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.less'],
   },
   plugins: [htmlPlugin],
 }
